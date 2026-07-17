@@ -27,7 +27,8 @@
       {
         "provider": "github",
         "owner": "KJDev99",
-        "repo": "reactinit"
+        "repo": "reactinit",
+        "releaseType": "release"
       }
     ],
     "win": {
