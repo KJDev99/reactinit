@@ -23,7 +23,17 @@ jobs:
 
       - run: npm run build
 
-      - name: Build and publish installer
-        run: npx electron-builder --win --publish always
+      - name: Build installer
+        run: npx electron-builder --win --publish never
+
+      # electron-builder's own publisher uploads artifacts in parallel, and each upload
+      # races to create the release — producing several releases sharing one tag, which
+      # breaks the /releases/download/<tag>/ URLs the updater relies on. Creating the
+      # release once, with every asset attached, keeps the tag unambiguous.
+      - name: Create GitHub Release
+        shell: pwsh
+        run: |
+          $assets = Get-ChildItem release\*.exe, release\*.exe.blockmap, release\latest.yml | ForEach-Object { $_.FullName }
+          gh release create $env:GITHUB_REF_NAME --title $env:GITHUB_REF_NAME --generate-notes @assets
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
