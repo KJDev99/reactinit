@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <div className="fixed top-0 left-0 z-50 w-full bg-white shadow-md">
       <nav className="flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-white">
-        <div className="text-xl font-bold text-indigo-600">MyShop</div>
+        <div className="text-xl font-bold text-indigo-600">MyShop!!!!</div>
         <ul className="hidden md:flex gap-6 text-sm text-gray-600">
           <li className="hover:text-indigo-600 cursor-pointer">Home</li>
           <li className="hover:text-indigo-600 cursor-pointer">Products</li>
